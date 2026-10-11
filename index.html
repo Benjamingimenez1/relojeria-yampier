@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Relojería Yampier: relojes clásicos, deportivos y casuales. Consultanos y recibí asesoramiento personalizado.">
+    <title>Relojería Yampier | Relojes con estilo</title>
+
+    <!-- Tipografías de Google Fonts (recurso externo). Si no hay internet,
+         el navegador usa las fuentes de respaldo definidas en styles.css -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Estilos propios -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- "defer" hace que el script se ejecute cuando el HTML ya fue leído completo -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+
+    <!-- Enlace para usuarios de teclado: aparece al presionar Tab -->
+    <a class="saltar-contenido" href="#contenido-principal">Saltar al contenido</a>
+
+    <!-- ================= A. ENCABEZADO Y NAVEGACIÓN ================= -->
+    <header class="encabezado">
+        <div class="contenedor encabezado-interior">
+            <a href="#inicio" class="logo">Relojería <span>Yampier</span></a>
+
+            <!-- Botón del menú: solo se ve en pantallas pequeñas -->
+            <button class="boton-menu" id="boton-menu" type="button"
+                    aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-principal">
+                <span class="boton-menu-linea"></span>
+                <span class="boton-menu-linea"></span>
+                <span class="boton-menu-linea"></span>
+            </button>
+
+            <nav aria-label="Navegación principal">
+                <ul class="menu" id="menu-principal">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="contenido-principal">
+
+        <!-- ================= B. SECCIÓN PRINCIPAL (HERO) ================= -->
+        <section class="hero" id="inicio">
+            <div class="contenedor hero-interior">
+                <div class="hero-texto">
+                    <p class="etiqueta">Relojería Yampier</p>
+                    <h1>El tiempo, con <em>estilo propio</em></h1>
+                    <p class="hero-descripcion">
+                        Relojes clásicos, deportivos y casuales elegidos para acompañar cada momento.
+                        Te asesoramos para que encuentres el reloj ideal para vos o para regalar.
+                    </p>
+                    <div class="hero-botones">
+                        <a href="#productos" class="boton boton-principal">Ver productos</a>
+                        <!-- script.js completa el enlace: WhatsApp si hay número, si no Instagram -->
+                        <a class="boton boton-secundario" id="boton-consulta-hero">Hacer una consulta</a>
+                    </div>
+                </div>
+
+                <figure class="hero-imagen">
+                    <!-- Foto de portada. Para cambiarla, reemplazá el archivo img/portada.jpg o cambiá el src -->
+                    <img src="img/portada.jpg" alt="Reloj dorado con esfera blanca, números romanos y correa de cuero marrón" width="403" height="640">
+                </figure>
+            </div>
+        </section>
+
+        <!-- ================= C. CATÁLOGO DE PRODUCTOS ================= -->
+        <section class="seccion seccion-clara" id="productos">
+            <div class="contenedor">
+                <div class="seccion-encabezado">
+                    <p class="etiqueta">Catálogo</p>
+                    <h2>Nuestros relojes</h2>
+                    <p>Una selección de modelos para distintos estilos. Consultanos por disponibilidad y precio actualizado.</p>
+                </div>
+
+                <!-- Filtro por categoría: el atributo data-categoria lo lee script.js -->
+                <div class="filtros" role="group" aria-label="Filtrar productos por categoría">
+                    <button class="filtro activo" type="button" data-categoria="todos" aria-pressed="true">Todos</button>
+                    <button class="filtro" type="button" data-categoria="clasico" aria-pressed="false">Clásicos</button>
+                    <button class="filtro" type="button" data-categoria="deportivo" aria-pressed="false">Deportivos</button>
+                    <button class="filtro" type="button" data-categoria="casual" aria-pressed="false">Casuales</button>
+                </div>
+
+                <!-- Contenedor vacío: script.js crea aquí las tarjetas a partir del array "productos" -->
+                <div class="productos-grilla" id="lista-productos"></div>
+
+                <p class="mensaje-vacio" id="mensaje-vacio" hidden>No hay productos en esta categoría por el momento.</p>
+
+                <noscript>
+                    <p class="mensaje-vacio">Para ver el catálogo es necesario activar JavaScript en el navegador.</p>
+                </noscript>
+            </div>
+        </section>
+
+        <!-- ================= D. NOSOTROS ================= -->
+        <!-- TEXTO PROVISIONAL: reemplazar por la presentación real del negocio -->
+        <section class="seccion" id="nosotros">
+            <div class="contenedor nosotros-interior">
+                <p class="etiqueta">Nosotros</p>
+                <h2>Un reloj dice mucho de quien lo lleva</h2>
+                <p>
+                    En Relojería Yampier creemos que elegir un reloj es una decisión personal.
+                    Por eso nos tomamos el tiempo de escucharte, entender qué buscás y mostrarte
+                    opciones que se adapten a tu estilo y a tu presupuesto.
+                </p>
+                <p>
+                    Ya sea para uso diario, para una ocasión especial o para hacer un regalo,
+                    te acompañamos en cada consulta con una atención cercana y sin apuros.
+                </p>
+                <p class="nosotros-destacado">Atención cercana, consulta sin compromiso.</p>
+            </div>
+        </section>
+
+        <!-- ================= E. BENEFICIOS ================= -->
+        <!-- Propuestas editables: no agregar garantías ni servicios que el negocio no haya confirmado -->
+        <section class="seccion seccion-oscura" id="beneficios">
+            <div class="contenedor">
+                <div class="seccion-encabezado">
+                    <p class="etiqueta">Por qué elegirnos</p>
+                    <h2>Nuestra propuesta</h2>
+                </div>
+
+                <div class="beneficios-grilla">
+                    <article class="beneficio">
+                        <span class="beneficio-numero" aria-hidden="true">01</span>
+                        <h3>Atención personalizada</h3>
+                        <p>Respondemos tus consultas de forma directa y te orientamos según lo que necesitás.</p>
+                    </article>
+                    <article class="beneficio">
+                        <span class="beneficio-numero" aria-hidden="true">02</span>
+                        <h3>Variedad de estilos</h3>
+                        <p>Modelos clásicos, deportivos y casuales para distintos gustos y ocasiones.</p>
+                    </article>
+                    <article class="beneficio">
+                        <span class="beneficio-numero" aria-hidden="true">03</span>
+                        <h3>Asesoramiento para elegir</h3>
+                        <p>Te ayudamos a comparar opciones y a encontrar el reloj indicado, también para regalar.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= F. CONTACTO ================= -->
+        <section class="seccion seccion-clara" id="contacto">
+            <div class="contenedor">
+                <div class="contacto-caja">
+                    <p class="etiqueta">Contacto</p>
+                    <h2>¿Tenés alguna consulta?</h2>
+                    <p>Escribinos y te respondemos a la brevedad. Contanos qué estilo de reloj estás buscando.</p>
+
+                    <a class="boton boton-oscuro" id="boton-consulta-contacto">Hacer una consulta</a>
+
+                    <!-- Cada dato se muestra solo si está completo en "datosNegocio" (script.js) -->
+                    <ul class="contacto-datos">
+                        <li id="dato-instagram" hidden>
+                            <span class="contacto-etiqueta">Instagram</span>
+                            <a id="enlace-instagram" target="_blank" rel="noopener noreferrer"></a>
+                        </li>
+                        <li id="dato-direccion" hidden>
+                            <span class="contacto-etiqueta">Dirección</span>
+                            <span id="texto-direccion"></span>
+                        </li>
+                        <li id="dato-horario" hidden>
+                            <span class="contacto-etiqueta">Horarios</span>
+                            <span id="texto-horario"></span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= G. PIE DE PÁGINA ================= -->
+    <footer class="pie">
+        <div class="contenedor">
+            <a href="#inicio" class="logo">Relojería <span>Yampier</span></a>
+            <nav aria-label="Navegación del pie de página">
+                <ul class="pie-menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <p class="pie-derechos">
+                &copy; <span id="anio-actual"></span> Relojería Yampier. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

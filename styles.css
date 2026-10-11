@@ -1,0 +1,697 @@
+/* =========================================================
+   RELOJERÍA YAMPIER - Hoja de estilos
+   Índice:
+   1. Variables (colores, fuentes, medidas)
+   2. Estilos base
+   3. Utilidades y botones
+   4. Encabezado y menú
+   5. Hero
+   6. Secciones generales
+   7. Catálogo de productos
+   8. Nosotros
+   9. Beneficios
+   10. Contacto
+   11. Pie de página
+   12. Responsive (media queries)
+   ========================================================= */
+
+
+/* ---------- 1. VARIABLES ----------
+   Cambiando estos valores se modifica todo el sitio.
+   (Cumplen una función parecida a las variables de Sass, pero son CSS estándar) */
+:root {
+    --color-negro: #0d0d0d;
+    --color-gris-oscuro: #1a1a1a;
+    --color-gris-borde: #2a2a2a;
+    --color-gris-texto: #5c5c5c;
+    --color-gris-suave: #bdbdbd;
+    --color-fondo-claro: #f6f4ef;
+    --color-blanco: #ffffff;
+    --color-dorado: #c9a45c;          /* detalles sobre fondos oscuros */
+    --color-dorado-oscuro: #7a5f26;   /* texto dorado sobre fondos claros (mejor contraste) */
+
+    --fuente-titulos: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+    --fuente-texto: "Inter", Arial, Helvetica, sans-serif;
+
+    --ancho-maximo: 1200px;
+    --altura-encabezado: 72px;
+    --radio: 4px;
+    --sombra: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --transicion: 0.25s ease;
+}
+
+
+/* ---------- 2. ESTILOS BASE ---------- */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;                         /* desplazamiento suave al usar el menú */
+    scroll-padding-top: var(--altura-encabezado);    /* evita que el encabezado fijo tape los títulos */
+}
+
+body {
+    font-family: var(--fuente-texto);
+    color: var(--color-negro);
+    background-color: var(--color-blanco);
+    line-height: 1.6;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul {
+    list-style: none;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--fuente-titulos);
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+/* Contorno visible al navegar con el teclado */
+:focus-visible {
+    outline: 2px solid var(--color-dorado);
+    outline-offset: 3px;
+}
+
+/* Garantiza que el atributo hidden siempre oculte el elemento */
+[hidden] {
+    display: none !important;
+}
+
+
+/* ---------- 3. UTILIDADES Y BOTONES ---------- */
+.contenedor {
+    width: 100%;
+    max-width: var(--ancho-maximo);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.saltar-contenido {
+    position: absolute;
+    left: 16px;
+    top: -60px;
+    z-index: 200;
+    padding: 10px 16px;
+    background-color: var(--color-dorado);
+    color: var(--color-negro);
+    font-weight: 600;
+}
+
+.saltar-contenido:focus {
+    top: 16px;
+}
+
+.etiqueta {
+    margin-bottom: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--color-dorado-oscuro);
+}
+
+.hero .etiqueta,
+.seccion-oscura .etiqueta {
+    color: var(--color-dorado);
+}
+
+.boton {
+    display: inline-block;
+    padding: 14px 28px;
+    border: 1px solid transparent;
+    border-radius: var(--radio);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color var(--transicion), color var(--transicion), border-color var(--transicion);
+}
+
+.boton-principal {
+    background-color: var(--color-dorado);
+    color: var(--color-negro);
+}
+
+.boton-principal:hover {
+    background-color: var(--color-blanco);
+}
+
+.boton-secundario {
+    border-color: rgba(255, 255, 255, 0.6);
+    color: var(--color-blanco);
+}
+
+.boton-secundario:hover {
+    border-color: var(--color-dorado);
+    color: var(--color-dorado);
+}
+
+.boton-oscuro {
+    background-color: var(--color-negro);
+    color: var(--color-blanco);
+}
+
+.boton-oscuro:hover {
+    background-color: var(--color-dorado);
+    color: var(--color-negro);
+}
+
+/* ---------- 4. ENCABEZADO Y MENÚ ---------- */
+.encabezado {
+    position: sticky;     /* queda fijo arriba al hacer scroll */
+    top: 0;
+    z-index: 100;
+    background-color: rgba(13, 13, 13, 0.95);
+    border-bottom: 1px solid rgba(201, 164, 92, 0.25);
+}
+
+.encabezado-interior {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--altura-encabezado);
+}
+
+.logo {
+    font-family: var(--fuente-titulos);
+    font-size: 1.6rem;
+    letter-spacing: 0.04em;
+    color: var(--color-blanco);
+}
+
+.logo span {
+    color: var(--color-dorado);
+}
+
+.menu {
+    display: flex;
+    gap: 32px;
+}
+
+.menu a {
+    padding: 8px 0;
+    border-bottom: 1px solid transparent;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #d9d9d9;
+    transition: color var(--transicion), border-color var(--transicion);
+}
+
+.menu a:hover {
+    color: var(--color-dorado);
+    border-bottom-color: var(--color-dorado);
+}
+
+/* Botón "hamburguesa": oculto en pantallas grandes */
+.boton-menu {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 8px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.boton-menu-linea {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background-color: var(--color-blanco);
+}
+
+
+/* ---------- 5. HERO ---------- */
+.hero {
+    padding: 96px 0;
+    background: radial-gradient(circle at 75% 40%, #2a2a2a 0%, var(--color-negro) 60%);
+    color: var(--color-blanco);
+}
+
+.hero-interior {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    align-items: center;
+    gap: 64px;
+}
+
+.hero h1 {
+    margin-bottom: 24px;
+    font-size: clamp(2.6rem, 6vw, 4.5rem);   /* tamaño mínimo, ideal y máximo */
+}
+
+.hero h1 em {
+    color: var(--color-dorado);
+}
+
+.hero-descripcion {
+    max-width: 480px;
+    margin-bottom: 36px;
+    font-size: 1.05rem;
+    color: #cfcfcf;
+}
+
+.hero-botones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.hero-imagen {
+    position: relative;
+}
+
+/* Marco dorado decorativo detrás de la imagen */
+.hero-imagen::before {
+    content: "";
+    position: absolute;
+    top: 20px;
+    right: -20px;
+    bottom: -20px;
+    left: 20px;
+    border: 1px solid var(--color-dorado);
+}
+
+.hero-imagen img {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: var(--radio);
+    background-color: var(--color-gris-borde);
+}
+
+
+/* ---------- 6. SECCIONES GENERALES ---------- */
+.seccion {
+    padding: 96px 0;
+}
+
+.seccion-clara {
+    background-color: var(--color-fondo-claro);
+}
+
+.seccion-oscura {
+    background-color: var(--color-gris-oscuro);
+    color: var(--color-blanco);
+}
+
+.seccion-encabezado {
+    max-width: 640px;
+    margin: 0 auto 48px;
+    text-align: center;
+}
+
+.seccion h2 {
+    margin-bottom: 16px;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+}
+
+.seccion-encabezado p {
+    color: var(--color-gris-texto);
+}
+
+.seccion-oscura .seccion-encabezado p {
+    color: var(--color-gris-suave);
+}
+
+
+/* ---------- 7. CATÁLOGO DE PRODUCTOS ---------- */
+.filtros {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.filtro {
+    padding: 10px 22px;
+    background-color: transparent;
+    border: 1px solid #c8c3b8;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    color: var(--color-negro);
+    cursor: pointer;
+    transition: background-color var(--transicion), color var(--transicion), border-color var(--transicion);
+}
+
+.filtro:hover {
+    border-color: var(--color-negro);
+}
+
+.filtro.activo {
+    background-color: var(--color-negro);
+    border-color: var(--color-negro);
+    color: var(--color-blanco);
+}
+
+/* Grilla automática: tantas columnas de al menos 260px como entren */
+.productos-grilla {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 32px;
+}
+
+.producto {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: var(--color-blanco);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    transition: transform var(--transicion), box-shadow var(--transicion);
+}
+
+.producto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+}
+
+.producto-imagen {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #2a2a2a, var(--color-negro));
+}
+
+.producto-imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.producto:hover .producto-imagen img {
+    transform: scale(1.04);
+}
+
+/* Se aplica desde script.js si una imagen no se puede cargar */
+.producto-imagen.sin-imagen::after {
+    content: "Imagen no disponible";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fuente-titulos);
+    font-size: 1.2rem;
+    color: var(--color-dorado);
+}
+
+.producto-cuerpo {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 8px;
+    padding: 24px;
+}
+
+.producto-categoria {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-dorado-oscuro);
+}
+
+.producto-nombre {
+    font-size: 1.5rem;
+}
+
+.producto-precio {
+    font-weight: 600;
+}
+
+.producto-descripcion {
+    flex-grow: 1;       /* empuja el botón hacia abajo para alinear todas las tarjetas */
+    font-size: 0.95rem;
+    color: var(--color-gris-texto);
+}
+
+.producto .boton {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.mensaje-vacio {
+    margin-top: 24px;
+    text-align: center;
+    color: var(--color-gris-texto);
+}
+
+
+/* ---------- 8. NOSOTROS ---------- */
+.nosotros-interior {
+    max-width: 760px;
+    text-align: center;
+}
+
+.nosotros-interior h2 {
+    margin-bottom: 24px;
+}
+
+.nosotros-interior p {
+    margin-bottom: 16px;
+    color: var(--color-gris-texto);
+}
+
+.nosotros-interior .etiqueta {
+    color: var(--color-dorado-oscuro);
+}
+
+.nosotros-interior .nosotros-destacado {
+    display: inline-block;
+    margin-top: 24px;
+    padding: 16px 0;
+    border-top: 1px solid var(--color-dorado);
+    border-bottom: 1px solid var(--color-dorado);
+    font-family: var(--fuente-titulos);
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--color-negro);
+}
+
+
+/* ---------- 9. BENEFICIOS ---------- */
+.beneficios-grilla {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+}
+
+.beneficio {
+    padding: 40px 32px;
+    border: 1px solid rgba(201, 164, 92, 0.3);
+    border-radius: var(--radio);
+    transition: border-color var(--transicion);
+}
+
+.beneficio:hover {
+    border-color: var(--color-dorado);
+}
+
+.beneficio-numero {
+    display: block;
+    margin-bottom: 16px;
+    font-family: var(--fuente-titulos);
+    font-size: 2.5rem;
+    color: var(--color-dorado);
+}
+
+.beneficio h3 {
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+}
+
+.beneficio p {
+    color: var(--color-gris-suave);
+}
+
+
+/* ---------- 10. CONTACTO ---------- */
+.contacto-caja {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 56px 48px;
+    background-color: var(--color-blanco);
+    border-top: 3px solid var(--color-dorado);
+    border-radius: var(--radio);
+    box-shadow: var(--sombra);
+    text-align: center;
+}
+
+.contacto-caja > p {
+    margin-bottom: 32px;
+    color: var(--color-gris-texto);
+}
+
+.contacto-datos {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 32px;
+    color: var(--color-gris-texto);
+}
+
+.contacto-etiqueta {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-dorado-oscuro);
+}
+
+.contacto-datos a {
+    border-bottom: 1px solid var(--color-dorado);
+    color: var(--color-negro);
+}
+
+.contacto-datos a:hover {
+    color: var(--color-dorado-oscuro);
+}
+
+
+/* ---------- 11. PIE DE PÁGINA ---------- */
+.pie {
+    padding: 48px 0 32px;
+    background-color: var(--color-negro);
+    color: #a8a8a8;
+    text-align: center;
+}
+
+.pie-menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    margin: 24px 0;
+    font-size: 0.85rem;
+}
+
+.pie-menu a:hover {
+    color: var(--color-dorado);
+}
+
+.pie-derechos {
+    padding-top: 24px;
+    border-top: 1px solid var(--color-gris-borde);
+    font-size: 0.8rem;
+}
+
+
+/* ---------- 12. RESPONSIVE ---------- */
+
+/* Tablets */
+@media (max-width: 900px) {
+    .hero-interior {
+        grid-template-columns: 1fr;
+        gap: 56px;
+    }
+
+    .hero-imagen {
+        width: 100%;
+        max-width: 420px;
+        margin: 0 auto;
+    }
+
+    .beneficios-grilla {
+        grid-template-columns: 1fr;
+    }
+
+    .seccion {
+        padding: 72px 0;
+    }
+}
+
+/* Celulares */
+@media (max-width: 768px) {
+    .boton-menu {
+        display: flex;
+    }
+
+    /* El menú se convierte en un panel desplegable debajo del encabezado */
+    .menu {
+        display: none;
+        position: absolute;
+        top: var(--altura-encabezado);
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        padding: 8px 24px 24px;
+        background-color: var(--color-negro);
+        border-bottom: 1px solid rgba(201, 164, 92, 0.25);
+    }
+
+    /* La clase "abierto" la agrega o quita script.js */
+    .menu.abierto {
+        display: flex;
+    }
+
+    .menu a {
+        display: block;
+        padding: 14px 0;
+        border-bottom: 1px solid var(--color-gris-borde);
+    }
+
+    .hero {
+        padding: 64px 0 80px;
+    }
+
+    .contacto-caja {
+        padding: 40px 24px;
+    }
+}
+
+/* Celulares pequeños */
+@media (max-width: 480px) {
+    .hero-botones .boton {
+        width: 100%;
+    }
+
+    .hero-imagen::before {
+        top: 12px;
+        right: -12px;
+        bottom: -12px;
+        left: 12px;
+    }
+}
+
+/* Respeta a quienes configuraron su sistema para reducir animaciones */
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        transition: none !important;
+    }
+}
